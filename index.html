@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zidan Motors 150-1000cc | أفضل الموديلات المتوفرة</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #030000 0%, #2d2d2d 50%, #8B0000 100%);
+            color: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #4B0000, #8B0000);
+            padding: 1rem 0;
+            box-shadow: 0 4px 20px rgba(139, 0, 0, 0.5);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #FF4040;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #FF4040;
+            text-shadow: 0 0 10px #FF0000;
+        }
+
+        /* Search */
+        .search-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            text-align: center;
+        }
+
+        .search-box {
+            width: 100%;
+            max-width: 500px;
+            padding: 1rem;
+            font-size: 1.2rem;
+            border: 2px solid #DC143C;
+            border-radius: 50px;
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+            outline: none;
+        }
+
+        .search-box::placeholder {
+            color: #ccc;
+        }
+
+        /* Filters */
+        .filters {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .filter-btn {
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(45deg, #B22222, #8B0000);
+            border: 2px solid #DC143C;
+            color: #fff;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: linear-gradient(45deg, #DC143C, #B22222);
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(220, 20, 60, 0.4);
+        }
+
+        
+        .bikes-grid {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .bike-card {
+            background: rgba(255,255,255,0.05);
+            border: 2px solid rgba(220, 20, 60, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.4s;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bike-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            
+            transition: left 0.5s;
+        }
+
+        .bike-card:hover::before {
+            left: 100%;
+        }
+
+        .bike-card:hover {
+            transform: translateY(-10px);
+            border-color: #FF4040;
+            box-shadow: 0 20px 40px rgba(139, 0, 0, 0.4);
+        }
+
+        .bike-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 1rem;
+        }
+
+        .bike-title {
+            font-size: 1.5rem;
+            color: #FF4040;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .bike-specs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 0.5rem;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+
+        .spec {
+            background: rgba(220, 20, 60, 0.2);
+            padding: 0.5rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .price {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #FFD700;
+            margin-top: 1rem;
+            text-align: center;
+        }
+
+        .available {
+            background: #4CAF50;
+            color: white;
+            padding: 0.5rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-top: 1rem;
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .filters {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .bikes-grid {
+                grid-template-columns: 1fr;
+                padding: 0 1rem;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .bike-card {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo"> Zidan Motors </div>
+            <ul class="nav-links">
+                <li><a href="#sport">Sport</a></li>
+                <li><a href="#naked">Naked</a></li>
+                <li><a href="#adventure">Adventure</a></li>
+                <li><a href="#cruiser">Cruiser</a></li>
+                <li><a href="#scooter">Scooter</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+<div>
+
+
+
+    <!-- Search -->
+    <div class="search-container">
+        <input type="text" class="search-box" placeholder="ابحث عن موتوسيكل... (هوندا، ياماها، كاواساكي...)">
+    </div>
+
+    <!-- Filters -->
+    <div class="filters">
+        <button class="filter-btn active" data-filter="all">الكل</button>
+        <button class="filter-btn" data-filter="150-250">150-250cc</button>
+        <button class="filter-btn" data-filter="250-400">250-400cc</button>
+        <button class="filter-btn" data-filter="400-700">400-700cc</button>
+        <button class="filter-btn" data-filter="700-1000">700-1000cc</button>
+        <button class="filter-btn" data-filter="1000-2000">1000-2000cc</button>
+        <button class="filter-btn" data-filter="sport">Sport</button>
+        <button class="filter-btn" data-filter="naked">Naked</button>
+        <button class="filter-btn" data-filter="adventure">Adventure</button>
+        <button class="filter-btn" data-filter="scooter">Scooter</button>
+    </div>
+
+    <!-- Bikes Grid -->
+    <div class="bikes-grid">
+        <!-- Honda CB150R -->
+        <div class="bike-card" data-cc="150" data-type="naked">
+            <img src="cbr.jpg" alt="Honda CB150R" class="bike-image">
+         <audio id="hoverSound" src="sound.mp3.mpeg" preload="auto"></audio>
+
+            <h3 class="bike-title">هوندا CB150R</h3>
+            <div class="bike-specs">
+                <div class="spec">150cc</div>
+                <div class="spec">16حصان</div>
+                <div class="spec">145كم/س</div>
+                <div class="spec">Naked</div>
+            </div>
+            <div class="price">95,000 جنيه</div>
+            <div class="available">متوفر في القاهرة</div>
+        </div>
+
+        <!-- Yamaha MT-15 -->
+        <div class="bike-card" data-cc="150" data-type="naked">
+            <img src="mt15.jpg" alt="Yamaha MT-15" class="bike-image">
+            <h3 class="bike-title">ياماها MT-15</h3>
+            <div class="bike-specs">
+                <div class="spec">155cc</div>
+                <div class="spec">19حصان</div>
+                <div class="spec">140كم/س</div>
+                <div class="spec">Naked</div>
+            </div>
+            <div class="price">105,000 جنيه</div>
+            <div class="available">متوفر في الإسكندرية</div>
+        </div>
+
+        <!-- Kawasaki Ninja 300 -->
+        <div class="bike-card" data-cc="300" data-type="sport">
+            <img src="ninga300.jpg" alt="Kawasaki Ninja 300" class="bike-image">
+            <h3 class="bike-title">كاواساكي نينجا 300</h3>
+            <div class="bike-specs">
+                <div class="spec">296cc</div>
+                <div class="spec">39حصان</div>
+                <div class="spec">170كم/س</div>
+                <div class="spec">Sport</div>
+            </div>
+            <div class="price">220,000 جنيه</div>
+            <div class="available">متوفر في الجيزة</div>
+        </div>
+
+        <!-- Honda CBR250RR -->
+        <div class="bike-card" data-cc="250" data-type="sport">
+            <img src="cbr250.jpg" alt="Honda CBR250RR" class="bike-image">
+            <h3 class="bike-title">هوندا CBR250RR</h3>
+            <div class="bike-specs">
+                <div class="spec">249cc</div>
+                <div class="spec">41حصان</div>
+                <div class="spec">175كم/س</div>
+                <div class="spec">Sport</div>
+            </div>
+            <div class="price">185,000 جنيه</div>
+            <div class="available">متوفر في المنصورة</div>
+        </div>
+
+        <!-- Zontes 310M -->
+        <div class="bike-card" data-cc="310" data-type="naked">
+            <img src="z310.jpg" alt="Zontes 310M" class="bike-image">
+            <h3 class="bike-title">زونتس 310M</h3>
+            <div class="bike-specs">
+                <div class="spec">310cc</div>
+                <div class="spec">35حصان</div>
+                <div class="spec">160كم/س</div>
+                <div class="spec">Scooter</div>
+            </div>
+            <div class="price">165,000 جنيه</div>
+            <div class="available">متوفر في مصر الجديدة</div>
+        </div>
+
+        <!-- Yamaha MT-03 -->
+        <div class="bike-card" data-cc="320" data-type="naked">
+            <img src="mt03.jpg" alt="Yamaha MT-03" class="bike-image">
+            <h3 class="bike-title">ياماها MT-03</h3>
+            <div class="bike-specs">
+                <div class="spec">321cc</div>
+                <div class="spec">42حصان</div>
+                <div class="spec">180كم/س</div>
+                <div class="spec">Naked</div>
+            </div>
+            <div class="price">240,000 جنيه</div>
+            <div class="available">متوفر في مدينة نصر</div>
+        </div>
+
+        <!-- Honda CB500F -->
+        <div class="bike-card" data-cc="500" data-type="naked">
+            <img src="cb500.jpg" alt="Honda CB500F" class="bike-image">
+            <h3 class="bike-title">هوندا CB500F</h3>
+            <div class="bike-specs">
+                <div class="spec">471cc</div>
+                <div class="spec">47حصان</div>
+                <div class="spec">190كم/س</div>
+                <div class="spec">Naked</div>
+            </div>
+            <div class="price">320,000 جنيه</div>
+            <div class="available">متوفر في التجمع</div>
+        </div>
+
+        <!-- Kawasaki Z650 -->
+        <div class="bike-card" data-cc="650" data-type="naked">
+            <img src="kz650.jpg" alt="Kawasaki Z650" class="bike-image">
+            <h3 class="bike-title">كاواساكي Z650</h3>
+            <div class="bike-specs">
+                <div class="spec">649cc</div>
+                <div class="spec">68حصان</div>
+                <div class="spec">210كم/س</div>
+                <div class="spec">Naked</div>
+            </div>
+            <div class="price">380,000 جنيه</div>
+            <div class="available">متوفر في السويس</div>
+        </div>
+
+
+
+        <!-- Zontes 350R -->
+<div class="bike-card" data-cc="350" data-type="sport">
+    <img src="z350r.jpg" alt="Zontes 350R" class="bike-image">
+    <h3 class="bike-title">زونتس 350R</h3>
+
+    <div class="bike-specs">
+        <div class="spec">348cc</div>
+        <div class="spec">39حصان</div>
+        <div class="spec">170كم/س</div>
+        <div class="spec">Sport</div>
+    </div>
+
+    <div class="price">255,000 جنيه</div>
+    <div class="available">متوفر في القاهرة</div>
+</div>
+
+<!-- Zontes 350X -->
+<div class="bike-card" data-cc="350" data-type="adventure">
+    <img src="z350x.jpg" alt="Zontes 350X" class="bike-image">
+    <h3 class="bike-title">زونتس 350X</h3>
+
+    <div class="bike-specs">
+        <div class="spec">348cc</div>
+        <div class="spec">39حصان</div>
+        <div class="spec">165كم/س</div>
+        <div class="spec">Adventure</div>
+    </div>
+
+    <div class="price">275,000 جنيه</div>
+    <div class="available">متوفر في اسىوط</div>
+</div>
+
+<!-- Zontes 350E -->
+<div class="bike-card" data-cc="350" data-type="scooter">
+    <img src="z350e.jpeg" alt="Zontes 350E" class="bike-image">
+    <h3 class="bike-title">زونتس 350E</h3>
+
+    <div class="bike-specs">
+        <div class="spec">349cc</div>
+        <div class="spec">36حصان</div>
+        <div class="spec">155كم/س</div>
+        <div class="spec">Scooter</div>
+    </div>
+
+    <div class="price">260,000 جنيه</div>
+    <div class="available">متوفر في الإسكندرية</div>
+</div>
+
+<!-- Zontes GK350 -->
+<div class="bike-card" data-cc="350" data-type="naked">
+    <img src="gk350.jpg" alt="Zontes GK350" class="bike-image">
+    <h3 class="bike-title">زونتس GK350</h3>
+
+    <div class="bike-specs">
+        <div class="spec">348cc</div>
+        <div class="spec">38حصان</div>
+        <div class="spec">160كم/س</div>
+        <div class="spec">Naked</div>
+    </div>
+
+    <div class="price">245,000 جنيه</div>
+    <div class="available">متوفر في مدينة نصر</div>
+</div>
+    </div>
+
+            <div class="bike-card" data-cc="1833" data-type="sport">
+            <img src="goldwing.jpg" alt="Goldwing" class="bike-image">
+            <h3 class="bike-title"> Gold Wing </h3>
+            <div class="bike-specs">
+                <div class="spec">1833cc</div>
+                <div class="spec">126حصان</div>
+                <div class="spec">230/س</div>
+                <div class="spec">Touring</div>
+            </div>
+            <div class="price">2,000,000 جنيه</div>
+            <div class="available">متوفر في القاهرة</div>
+        </div>
+
+
+
+
+
+
+    <script>
+const searchBox = document.querySelector('.search-box');
+const bikeCards = document.querySelectorAll('.bike-card');
+const filterBtns = document.querySelectorAll('.filter-btn');
+
+// 🎵 الصوت
+const hoverSound = document.getElementById("hoverSound");
+
+let currentFilter = 'all';
+let currentSearch = '';
+
+// فلترة عامة
+function filterBikes() {
+
+    bikeCards.forEach(card => {
+
+        const title = card.querySelector('.bike-title')
+            .textContent.toLowerCase();
+
+        const cc = parseInt(card.getAttribute('data-cc'));
+        const type = card.getAttribute('data-type');
+
+        let matchesFilter = false;
+
+        if (currentFilter === 'all') {
+            matchesFilter = true;
+        }
+
+        else if (currentFilter === '150-250' && cc >= 150 && cc <= 250) {
+            matchesFilter = true;
+        }
+
+        else if (currentFilter === '250-400' && cc > 250 && cc <= 400) {
+            matchesFilter = true;
+        }
+
+        else if (currentFilter === '400-700' && cc > 400 && cc <= 700) {
+            matchesFilter = true;
+        }
+
+        else if (currentFilter === '700-1000' && cc > 700 && cc <= 1000) {
+            matchesFilter = true;
+        }
+
+        else if (currentFilter === type) {
+            matchesFilter = true;
+        }
+
+        const matchesSearch = title.includes(currentSearch);
+
+        if (matchesSearch && matchesFilter) {
+            card.style.display = 'block';
+        } else {
+            card.style.display = 'none';
+        }
+    });
+}
+
+// 🔎 Search
+searchBox.addEventListener('input', (e) => {
+    currentSearch = e.target.value.toLowerCase();
+    filterBikes();
+});
+
+// 🎛️ Filters
+filterBtns.forEach(btn => {
+
+    btn.addEventListener('click', () => {
+
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        currentFilter = btn.getAttribute('data-filter');
+
+        filterBikes();
+    });
+
+});
+
+// 🔊 Hover Sound + Hover Effect
+bikeCards.forEach(card => {
+
+    card.addEventListener('mouseenter', () => {
+
+        // تشغيل الصوت
+        if (hoverSound) {
+            hoverSound.currentTime = 0;
+            hoverSound.play().catch(() => {
+                // لو المتصفح منع الصوت مفيش مشكلة
+            });
+        }
+
+        // تأثير بسيط
+        card.style.transform = "scale(1.05)";
+    });
+
+    card.addEventListener('mouseleave', () => {
+        card.style.transform = "scale(1)";
+    });
+
+});
+</script>
