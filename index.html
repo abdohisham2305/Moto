@@ -249,7 +249,7 @@
                 <li><a href="#sport">Sport</a></li>
                 <li><a href="#naked">Naked</a></li>
                 <li><a href="#adventure">Adventure</a></li>
-                <li><a href="#cruiser">Cruiser</a></li>
+                <li><a href="#Touring">Touring</a></li>
                 <li><a href="#scooter">Scooter</a></li>
             </ul>
         </nav>
@@ -276,6 +276,7 @@
         <button class="filter-btn" data-filter="naked">Naked</button>
         <button class="filter-btn" data-filter="adventure">Adventure</button>
         <button class="filter-btn" data-filter="scooter">Scooter</button>
+        <button class="filter-btn" data-filter="Touring">Touring</button>
     </div>
 
     <!-- Bikes Grid -->
@@ -339,7 +340,7 @@
         </div>
 
         <!-- Zontes 310M -->
-        <div class="bike-card" data-cc="310" data-type="naked">
+        <div class="bike-card" data-cc="310" data-type="Scooter">
             <img src="z310.jpg" alt="Zontes 310M" class="bike-image">
             <h3 class="bike-title">زونتس 310M</h3>
             <div class="bike-specs">
@@ -461,7 +462,7 @@
 </div>
     </div>
 
-            <div class="bike-card" data-cc="1833" data-type="sport">
+            <div class="bike-card" data-cc="1833" data-type="Touring">
             <img src="goldwing.jpg" alt="Goldwing" class="bike-image">
             <h3 class="bike-title"> Gold Wing </h3>
             <div class="bike-specs">
@@ -484,13 +485,11 @@ const searchBox = document.querySelector('.search-box');
 const bikeCards = document.querySelectorAll('.bike-card');
 const filterBtns = document.querySelectorAll('.filter-btn');
 
-// 🎵 الصوت
 const hoverSound = document.getElementById("hoverSound");
 
 let currentFilter = 'all';
 let currentSearch = '';
 
-// فلترة عامة
 function filterBikes() {
 
     bikeCards.forEach(card => {
@@ -523,6 +522,10 @@ function filterBikes() {
             matchesFilter = true;
         }
 
+                else if (currentFilter === '1000-2000' && cc > 1000 && cc <= 2000) {
+            matchesFilter = true;
+        }
+
         else if (currentFilter === type) {
             matchesFilter = true;
         }
@@ -537,13 +540,11 @@ function filterBikes() {
     });
 }
 
-// 🔎 Search
 searchBox.addEventListener('input', (e) => {
     currentSearch = e.target.value.toLowerCase();
     filterBikes();
 });
 
-// 🎛️ Filters
 filterBtns.forEach(btn => {
 
     btn.addEventListener('click', () => {
@@ -558,20 +559,16 @@ filterBtns.forEach(btn => {
 
 });
 
-// 🔊 Hover Sound + Hover Effect
 bikeCards.forEach(card => {
 
     card.addEventListener('mouseenter', () => {
 
-        // تشغيل الصوت
         if (hoverSound) {
             hoverSound.currentTime = 0;
             hoverSound.play().catch(() => {
-                // لو المتصفح منع الصوت مفيش مشكلة
             });
         }
 
-        // تأثير بسيط
         card.style.transform = "scale(1.05)";
     });
 
