@@ -12,14 +12,13 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Times New Roman', sans-serif;
             background: linear-gradient(135deg, #030000 0%, #2d2d2d 50%, #8B0000 100%);
             color: #fff;
             line-height: 1.6;
             overflow-x: hidden;
         }
 
-        /* Header */
         header {
             background: linear-gradient(135deg, #4B0000, #8B0000);
             padding: 1rem 0;
@@ -41,7 +40,7 @@
         .logo {
             font-size: 2rem;
             font-weight: bold;
-             color: #030303;
+            color: #030303;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
 
@@ -58,12 +57,6 @@
             transition: all 0.3s;
         }
 
-        .nav-links a:hover {
-            color: #FF4040;
-            text-shadow: 0 0 10px #FF0000;
-        }
-
-        /* Search */
         .search-container {
             max-width: 1200px;
             margin: 2rem auto;
@@ -87,7 +80,6 @@
             color: #ccc;
         }
 
-        /* Filters */
         .filters {
             max-width: 1200px;
             margin: 2rem auto;
@@ -115,7 +107,6 @@
             box-shadow: 0 5px 15px rgba(220, 20, 60, 0.4);
         }
 
-        
         .bikes-grid {
             max-width: 1200px;
             margin: 3rem auto;
@@ -134,6 +125,7 @@
             backdrop-filter: blur(10px);
             position: relative;
             overflow: hidden;
+            animation: fadeInUp 0.6s ease forwards;
         }
 
         .bike-card::before {
@@ -144,7 +136,6 @@
             width: 100%;
             height: 100%;
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            
             transition: left 0.5s;
         }
 
@@ -196,55 +187,166 @@
             text-align: center;
         }
 
+        /* --- متوفر badge قابل للنقر --- */
         .available {
             background: #4CAF50;
             color: white;
-            padding: 0.5rem;
+            padding: 0.5rem 1rem;
             border-radius: 20px;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             margin-top: 1rem;
+            text-align: center;
+            cursor: pointer;
+            border: none;
+            width: 100%;
+            display: block;
+            transition: background 0.2s, transform 0.15s;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .available:hover {
+            background: #43A047;
+            transform: scale(1.03);
+        }
+
+        /* --- Overlay --- */
+        .seller-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.65);
+            z-index: 999;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .seller-overlay.open {
+            display: flex;
+        }
+
+        /* --- Popup --- */
+        .seller-popup {
+            background: linear-gradient(145deg, #1a0000, #2d0000);
+            border: 2px solid #DC143C;
+            border-radius: 20px;
+            padding: 2rem;
+            min-width: 300px;
+            max-width: 380px;
+            width: 90%;
+            position: relative;
+            box-shadow: 0 0 40px rgba(220, 20, 60, 0.4);
+            animation: popIn 0.25s ease;
+        }
+
+
+
+        .popup-close {
+            position: absolute;
+            top: 12px;
+            left: 14px;
+            background: none;
+            border: none;
+            color: #aaa;
+            font-size: 22px;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .popup-close:hover { color: #fff; }
+
+        .popup-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #DC143C, #8B0000);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #fff;
+            margin: 0 auto 1rem;
+            border: 2px solid #FF4040;
+        }
+
+        .popup-bike-name {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #FF6060;
+            margin-bottom: 0.3rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .popup-seller-name {
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 1.2rem;
+        }
+
+        .popup-divider {
+            border: none;
+            border-top: 1px solid rgba(220, 20, 60, 0.3);
+            margin-bottom: 1.2rem;
+        }
+
+        .popup-info-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 0.8rem;
+            font-size: 0.95rem;
+            color: #ddd;
+        }
+
+        .popup-info-row .icon {
+            font-size: 1.2rem;
+            min-width: 24px;
             text-align: center;
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .filters {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .bikes-grid {
-                grid-template-columns: 1fr;
-                padding: 0 1rem;
-            }
+        .popup-info-row a {
+            color: #FFD700;
+            text-decoration: none;
+            direction: ltr;
+            unicode-bidi: embed;
         }
 
-        /* Animation */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .popup-info-row a:hover { text-decoration: underline; }
+
+        .popup-location {
+            color: #ccc;
         }
 
-        .bike-card {
-            animation: fadeInUp 0.6s ease forwards;
+        .popup-whatsapp-btn {
+            display: block;
+            margin-top: 1.2rem;
+            padding: 0.7rem;
+            background: linear-gradient(45deg, #25D366, #128C7E);
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            transition: opacity 0.2s;
+            font-family: 'Arial', sans-serif;
         }
+
+        .popup-whatsapp-btn:hover { opacity: 0.88; }
+
+
     </style>
 </head>
 <body>
-    <!-- Header -->
+
     <header>
         <nav>
-            <div class="logo"> Zidan Motors </div>
+            <div class="logo">Zidan Motors</div>
             <ul class="nav-links">
                 <li><a href="#sport">Sport</a></li>
                 <li><a href="#naked">Naked</a></li>
@@ -254,327 +356,385 @@
             </ul>
         </nav>
     </header>
-    
-<div>
+
+    <div>
+        <div class="search-container">
+            <input type="text" class="search-box" placeholder="ابحث عن موتوسيكل... (هوندا، ياماها، كاواساكي...)">
+        </div>
+
+        <div class="filters">
+            <button class="filter-btn active" data-filter="all">الكل</button>
+            <button class="filter-btn" data-filter="150-250">150-250cc</button>
+            <button class="filter-btn" data-filter="250-400">250-400cc</button>
+            <button class="filter-btn" data-filter="400-700">400-700cc</button>
+            <button class="filter-btn" data-filter="700-1000">700-1000cc</button>
+            <button class="filter-btn" data-filter="1000-2000">1000-2000cc</button>
+            <button class="filter-btn" data-filter="sport">Sport</button>
+            <button class="filter-btn" data-filter="naked">Naked</button>
+            <button class="filter-btn" data-filter="adventure">Adventure</button>
+            <button class="filter-btn" data-filter="scooter">Scooter</button>
+            <button class="filter-btn" data-filter="Touring">Touring</button>
+        </div>
+
+        <div class="bikes-grid">
+
+            <div class="bike-card" data-cc="150" data-type="naked">
+                <img src="cbr.jpg" alt="Honda CB150R" class="bike-image">
+                <audio id="hoverSound" src="sound.mp3.mpeg" preload="auto"></audio>
+                <h3 class="bike-title">هوندا CB150R</h3>
+                <div class="bike-specs">
+                    <div class="spec">150cc</div>
+                    <div class="spec">16حصان</div>
+                    <div class="spec">145كم/س</div>
+                    <div class="spec">Naked</div>
+                </div>
+                <div class="price">95,000 جنيه</div>
+                <button class="available"
+                    data-seller=" Moto 2"
+                    data-phone="01012345678"
+                    data-location="القاهرة"
+                    data-bike="هوندا CB150R">
+                    متوفر في القاهرة — اضغط لبيانات البائع
+                </button>
+            </div>
+
+            <div class="bike-card" data-cc="150" data-type="naked">
+                <img src="mt15.jpg" alt="Yamaha MT-15" class="bike-image">
+                <h3 class="bike-title">ياماها MT-15</h3>
+                <div class="bike-specs">
+                    <div class="spec">155cc</div>
+                    <div class="spec">19حصان</div>
+                    <div class="spec">140كم/س</div>
+                    <div class="spec">Naked</div>
+                </div>
+                <div class="price">105,000 جنيه</div>
+                <button class="available"
+                    data-seller=" moto 4 "
+                    data-phone="01098765432"
+                    data-location="الإسكندرية"
+                    data-bike="ياماها MT-15">
+                    متوفر في الإسكندرية — اضغط لبيانات البائع
+                </button>
+            </div>
+
+            <div class="bike-card" data-cc="300" data-type="sport">
+                <img src="ninga300.jpg" alt="Kawasaki Ninja 300" class="bike-image">
+                <h3 class="bike-title">كاواساكي نينجا 300</h3>
+                <div class="bike-specs">
+                    <div class="spec">296cc</div>
+                    <div class="spec">39حصان</div>
+                    <div class="spec">170كم/س</div>
+                    <div class="spec">Sport</div>
+                </div>
+                <div class="price">220,000 جنيه</div>
+                <button class="available"
+                    data-seller=" Moto 4"
+                    data-phone="01155556677"
+                    data-location="الجيزة"
+                    data-bike="كاواساكي نينجا 300">
+                    متوفر في الجيزة — اضغط لبيانات البائع
+                </button>
+            </div>
+
+            <div class="bike-card" data-cc="250" data-type="sport">
+                <img src="cbr250.jpg" alt="Honda CBR250RR" class="bike-image">
+                <h3 class="bike-title">هوندا CBR250RR</h3>
+                <div class="bike-specs">
+                    <div class="spec">249cc</div>
+                    <div class="spec">41حصان</div>
+                    <div class="spec">175كم/س</div>
+                    <div class="spec">Sport</div>
+                </div>
+                <div class="price">185,000 جنيه</div>
+                <button class="available"
+                    data-seller=" Moto 3"
+                    data-phone="01234567890"
+                    data-location="المنصورة"
+                    data-bike="هوندا CBR250RR">
+                    متوفر في المنصورة — اضغط لبيانات البائع
+                </button>
+            </div>
+
+            <div class="bike-card" data-cc="310" data-type="scooter">
+                <img src="z310.jpg" alt="Zontes 310M" class="bike-image">
+                <h3 class="bike-title">زونتس 310M</h3>
+                <div class="bike-specs">
+                    <div class="spec">310cc</div>
+                    <div class="spec">35حصان</div>
+                    <div class="spec">160كم/س</div>
+                    <div class="spec">Scooter</div>
+                </div>
+                <div class="price">165,000 جنيه</div>
+                <button class="available"
+                    data-seller=" moto 3"
+                    data-phone="01187654321"
+                    data-location="مصر الجديدة"
+                    data-bike="زونتس 310M">
+                    متوفر في مصر الجديدة — اضغط لبيانات البائع
+                </button>
+            </div>
+
+            <div class="bike-card" data-cc="320" data-type="naked">
+                <img src="mt03.jpg" alt="Yamaha MT-03" class="bike-image">
+                <h3 class="bike-title">ياماها MT-03</h3>
+                <div class="bike-specs">
+                    <div class="spec">321cc</div>
+                    <div class="spec">42حصان</div>
+                    <div class="spec">180كم/س</div>
+                    <div class="spec">Naked</div>
+                </div>
+                <div class="price">240,000 جنيه</div>
+                <button class="available"
+                    data-seller=" moto 1"
+                    data-phone="01011223344"
+                    data-location="مدينة نصر"
+                    data-bike="ياماها MT-03">
+                    متوفر في مدينة نصر — اضغط لبيانات البائع
+                </button>
+            </div>
+
+            <div class="bike-card" data-cc="500" data-type="naked">
+                <img src="cb500.jpg" alt="Honda CB500F" class="bike-image">
+                <h3 class="bike-title">هوندا CB500F</h3>
+                <div class="bike-specs">
+                    <div class="spec">471cc</div>
+                    <div class="spec">47حصان</div>
+                    <div class="spec">190كم/س</div>
+                    <div class="spec">Naked</div>
+                </div>
+                <div class="price">320,000 جنيه</div>
+                <button class="available"
+                    data-seller=" moto 2"
+                    data-phone="01099887766"
+                    data-location="التجمع الخامس"
+                    data-bike="هوندا CB500F">
+                    متوفر في التجمع — اضغط لبيانات البائع
+                </button>
+            </div>
+
+            <div class="bike-card" data-cc="650" data-type="naked">
+                <img src="kz650.jpg" alt="Kawasaki Z650" class="bike-image">
+                <h3 class="bike-title">كاواساكي Z650</h3>
+                <div class="bike-specs">
+                    <div class="spec">649cc</div>
+                    <div class="spec">68حصان</div>
+                    <div class="spec">210كم/س</div>
+                    <div class="spec">Naked</div>
+                </div>
+                <div class="price">380,000 جنيه</div>
+                <button class="available"
+                    data-seller="moto 2 "
+                    data-phone="01566778899"
+                    data-location="السويس"
+                    data-bike="كاواساكي Z650">
+                    متوفر في السويس — اضغط لبيانات البائع
+                </button>
+            </div>
+
+            <div class="bike-card" data-cc="350" data-type="sport">
+                <img src="z350r.jpg" alt="Zontes 350R" class="bike-image">
+                <h3 class="bike-title">زونتس 350R</h3>
+                <div class="bike-specs">
+                    <div class="spec">348cc</div>
+                    <div class="spec">39حصان</div>
+                    <div class="spec">170كم/س</div>
+                    <div class="spec">Sport</div>
+                </div>
+                <div class="price">255,000 جنيه</div>
+                <button class="available"
+                    data-seller=" moto 4"
+                    data-phone="01012345678"
+                    data-location="القاهرة"
+                    data-bike="زونتس 350R">
+                    متوفر في القاهرة — اضغط لبيانات البائع
+                </button>
+            </div>
+
+            <div class="bike-card" data-cc="350" data-type="adventure">
+                <img src="z350x.jpg" alt="Zontes 350X" class="bike-image">
+                <h3 class="bike-title">زونتس 350X</h3>
+                <div class="bike-specs">
+                    <div class="spec">348cc</div>
+                    <div class="spec">39حصان</div>
+                    <div class="spec">165كم/س</div>
+                    <div class="spec">Adventure</div>
+                </div>
+                <div class="price">275,000 جنيه</div>
+                <button class="available"
+                    data-seller=" moto 1 "
+                    data-phone="01033445566"
+                    data-location="أسيوط"
+                    data-bike="زونتس 350X">
+                    متوفر في أسيوط — اضغط لبيانات البائع
+                </button>
+            </div>
+
+            <div class="bike-card" data-cc="350" data-type="scooter">
+                <img src="z350e.jpeg" alt="Zontes 350E" class="bike-image">
+                <h3 class="bike-title">زونتس 350E</h3>
+                <div class="bike-specs">
+                    <div class="spec">349cc</div>
+                    <div class="spec">36حصان</div>
+                    <div class="spec">155كم/س</div>
+                    <div class="spec">Scooter</div>
+                </div>
+                <div class="price">260,000 جنيه</div>
+                <button class="available"
+                    data-seller="  moto 1"
+                    data-phone="01277889900"
+                    data-location="الإسكندرية"
+                    data-bike="زونتس 350E">
+                    متوفر في الإسكندرية — اضغط لبيانات البائع
+                </button>
+            </div>
+
+            <div class="bike-card" data-cc="350" data-type="naked">
+                <img src="gk350.jpg" alt="Zontes GK350" class="bike-image">
+                <h3 class="bike-title">زونتس GK350</h3>
+                <div class="bike-specs">
+                    <div class="spec">348cc</div>
+                    <div class="spec">38حصان</div>
+                    <div class="spec">160كم/س</div>
+                    <div class="spec">Naked</div>
+                </div>
+                <div class="price">245,000 جنيه</div>
+                <button class="available"
+                    data-seller=" moto 3"
+                    data-phone="01011223344"
+                    data-location="مدينة نصر"
+                    data-bike="زونتس GK350">
+                    متوفر في مدينة نصر — اضغط لبيانات البائع
+                </button>
+            </div>
 
 
 
-    <!-- Search -->
-    <div class="search-container">
-        <input type="text" class="search-box" placeholder="ابحث عن موتوسيكل... (هوندا، ياماها، كاواساكي...)">
+        </div>
     </div>
 
-    <!-- Filters -->
-    <div class="filters">
-        <button class="filter-btn active" data-filter="all">الكل</button>
-        <button class="filter-btn" data-filter="150-250">150-250cc</button>
-        <button class="filter-btn" data-filter="250-400">250-400cc</button>
-        <button class="filter-btn" data-filter="400-700">400-700cc</button>
-        <button class="filter-btn" data-filter="700-1000">700-1000cc</button>
-        <button class="filter-btn" data-filter="1000-2000">1000-2000cc</button>
-        <button class="filter-btn" data-filter="sport">Sport</button>
-        <button class="filter-btn" data-filter="naked">Naked</button>
-        <button class="filter-btn" data-filter="adventure">Adventure</button>
-        <button class="filter-btn" data-filter="scooter">Scooter</button>
-        <button class="filter-btn" data-filter="Touring">Touring</button>
+    <div class="seller-overlay" id="sellerOverlay">
+        <div class="seller-popup" id="sellerPopup">
+            <button class="popup-close" id="popupClose">✕</button>
+            <div class="popup-avatar" id="popupAvatar"></div>
+            <div class="popup-bike-name" id="popupBikeName"></div>
+            <div class="popup-seller-name" id="popupSellerName"></div>
+            <hr class="popup-divider">
+            <div class="popup-info-row">
+                <span class="icon">📞</span>
+                <span>رقم الهاتف:</span>
+                <a href="#" id="popupPhone"></a>
+            </div>
+            <div class="popup-info-row">
+                <span class="icon">📍</span>
+                <span class="popup-location" id="popupLocation"></span>
+            </div>
+            <a href="#" id="popupWhatsapp" class="popup-whatsapp-btn" target="_blank">
+                💬 تواصل عبر واتساب
+            </a>
+        </div>
     </div>
-
-    <!-- Bikes Grid -->
-    <div class="bikes-grid">
-        <!-- Honda CB150R -->
-        <div class="bike-card" data-cc="150" data-type="naked">
-            <img src="cbr.jpg" alt="Honda CB150R" class="bike-image">
-         <audio id="hoverSound" src="sound.mp3.mpeg" preload="auto"></audio>
-
-            <h3 class="bike-title">هوندا CB150R</h3>
-            <div class="bike-specs">
-                <div class="spec">150cc</div>
-                <div class="spec">16حصان</div>
-                <div class="spec">145كم/س</div>
-                <div class="spec">Naked</div>
-            </div>
-            <div class="price">95,000 جنيه</div>
-            <div class="available">متوفر في القاهرة</div>
-        </div>
-
-        <!-- Yamaha MT-15 -->
-        <div class="bike-card" data-cc="150" data-type="naked">
-            <img src="mt15.jpg" alt="Yamaha MT-15" class="bike-image">
-            <h3 class="bike-title">ياماها MT-15</h3>
-            <div class="bike-specs">
-                <div class="spec">155cc</div>
-                <div class="spec">19حصان</div>
-                <div class="spec">140كم/س</div>
-                <div class="spec">Naked</div>
-            </div>
-            <div class="price">105,000 جنيه</div>
-            <div class="available">متوفر في الإسكندرية</div>
-        </div>
-
-        <!-- Kawasaki Ninja 300 -->
-        <div class="bike-card" data-cc="300" data-type="sport">
-            <img src="ninga300.jpg" alt="Kawasaki Ninja 300" class="bike-image">
-            <h3 class="bike-title">كاواساكي نينجا 300</h3>
-            <div class="bike-specs">
-                <div class="spec">296cc</div>
-                <div class="spec">39حصان</div>
-                <div class="spec">170كم/س</div>
-                <div class="spec">Sport</div>
-            </div>
-            <div class="price">220,000 جنيه</div>
-            <div class="available">متوفر في الجيزة</div>
-        </div>
-
-        <!-- Honda CBR250RR -->
-        <div class="bike-card" data-cc="250" data-type="sport">
-            <img src="cbr250.jpg" alt="Honda CBR250RR" class="bike-image">
-            <h3 class="bike-title">هوندا CBR250RR</h3>
-            <div class="bike-specs">
-                <div class="spec">249cc</div>
-                <div class="spec">41حصان</div>
-                <div class="spec">175كم/س</div>
-                <div class="spec">Sport</div>
-            </div>
-            <div class="price">185,000 جنيه</div>
-            <div class="available">متوفر في المنصورة</div>
-        </div>
-
-        <!-- Zontes 310M -->
-        <div class="bike-card" data-cc="310" data-type="Scooter">
-            <img src="z310.jpg" alt="Zontes 310M" class="bike-image">
-            <h3 class="bike-title">زونتس 310M</h3>
-            <div class="bike-specs">
-                <div class="spec">310cc</div>
-                <div class="spec">35حصان</div>
-                <div class="spec">160كم/س</div>
-                <div class="spec">Scooter</div>
-            </div>
-            <div class="price">165,000 جنيه</div>
-            <div class="available">متوفر في مصر الجديدة</div>
-        </div>
-
-        <!-- Yamaha MT-03 -->
-        <div class="bike-card" data-cc="320" data-type="naked">
-            <img src="mt03.jpg" alt="Yamaha MT-03" class="bike-image">
-            <h3 class="bike-title">ياماها MT-03</h3>
-            <div class="bike-specs">
-                <div class="spec">321cc</div>
-                <div class="spec">42حصان</div>
-                <div class="spec">180كم/س</div>
-                <div class="spec">Naked</div>
-            </div>
-            <div class="price">240,000 جنيه</div>
-            <div class="available">متوفر في مدينة نصر</div>
-        </div>
-
-        <!-- Honda CB500F -->
-        <div class="bike-card" data-cc="500" data-type="naked">
-            <img src="cb500.jpg" alt="Honda CB500F" class="bike-image">
-            <h3 class="bike-title">هوندا CB500F</h3>
-            <div class="bike-specs">
-                <div class="spec">471cc</div>
-                <div class="spec">47حصان</div>
-                <div class="spec">190كم/س</div>
-                <div class="spec">Naked</div>
-            </div>
-            <div class="price">320,000 جنيه</div>
-            <div class="available">متوفر في التجمع</div>
-        </div>
-
-        <!-- Kawasaki Z650 -->
-        <div class="bike-card" data-cc="650" data-type="naked">
-            <img src="kz650.jpg" alt="Kawasaki Z650" class="bike-image">
-            <h3 class="bike-title">كاواساكي Z650</h3>
-            <div class="bike-specs">
-                <div class="spec">649cc</div>
-                <div class="spec">68حصان</div>
-                <div class="spec">210كم/س</div>
-                <div class="spec">Naked</div>
-            </div>
-            <div class="price">380,000 جنيه</div>
-            <div class="available">متوفر في السويس</div>
-        </div>
-
-
-
-        <!-- Zontes 350R -->
-<div class="bike-card" data-cc="350" data-type="sport">
-    <img src="z350r.jpg" alt="Zontes 350R" class="bike-image">
-    <h3 class="bike-title">زونتس 350R</h3>
-
-    <div class="bike-specs">
-        <div class="spec">348cc</div>
-        <div class="spec">39حصان</div>
-        <div class="spec">170كم/س</div>
-        <div class="spec">Sport</div>
-    </div>
-
-    <div class="price">255,000 جنيه</div>
-    <div class="available">متوفر في القاهرة</div>
-</div>
-
-<!-- Zontes 350X -->
-<div class="bike-card" data-cc="350" data-type="adventure">
-    <img src="z350x.jpg" alt="Zontes 350X" class="bike-image">
-    <h3 class="bike-title">زونتس 350X</h3>
-
-    <div class="bike-specs">
-        <div class="spec">348cc</div>
-        <div class="spec">39حصان</div>
-        <div class="spec">165كم/س</div>
-        <div class="spec">Adventure</div>
-    </div>
-
-    <div class="price">275,000 جنيه</div>
-    <div class="available">متوفر في اسىوط</div>
-</div>
-
-<!-- Zontes 350E -->
-<div class="bike-card" data-cc="350" data-type="scooter">
-    <img src="z350e.jpeg" alt="Zontes 350E" class="bike-image">
-    <h3 class="bike-title">زونتس 350E</h3>
-
-    <div class="bike-specs">
-        <div class="spec">349cc</div>
-        <div class="spec">36حصان</div>
-        <div class="spec">155كم/س</div>
-        <div class="spec">Scooter</div>
-    </div>
-
-    <div class="price">260,000 جنيه</div>
-    <div class="available">متوفر في الإسكندرية</div>
-</div>
-
-<!-- Zontes GK350 -->
-<div class="bike-card" data-cc="350" data-type="naked">
-    <img src="gk350.jpg" alt="Zontes GK350" class="bike-image">
-    <h3 class="bike-title">زونتس GK350</h3>
-
-    <div class="bike-specs">
-        <div class="spec">348cc</div>
-        <div class="spec">38حصان</div>
-        <div class="spec">160كم/س</div>
-        <div class="spec">Naked</div>
-    </div>
-
-    <div class="price">245,000 جنيه</div>
-    <div class="available">متوفر في مدينة نصر</div>
-</div>
-    </div>
-
             <div class="bike-card" data-cc="1833" data-type="Touring">
-            <img src="goldwing.jpg" alt="Goldwing" class="bike-image">
-            <h3 class="bike-title"> Gold Wing </h3>
-            <div class="bike-specs">
-                <div class="spec">1833cc</div>
-                <div class="spec">126حصان</div>
-                <div class="spec">230/س</div>
-                <div class="spec">Touring</div>
+                <img src="goldwing.jpg" alt="Goldwing" class="bike-image">
+                <h3 class="bike-title">Gold Wing</h3>
+                <div class="bike-specs">
+                    <div class="spec">1833cc</div>
+                    <div class="spec">126حصان</div>
+                    <div class="spec">230كم/س</div>
+                    <div class="spec">Touring</div>
+                </div>
+                <div class="price">2,000,000 جنيه</div>
+                <button class="available"
+                    data-seller=" moto 1"
+                    data-phone="01012345678"
+                    data-location="القاهرة"
+                    data-bike="Honda Gold Wing">
+                    متوفر في القاهرة — اضغط لبيانات البائع
+                </button>
             </div>
-            <div class="price">2,000,000 جنيه</div>
-            <div class="available">متوفر في القاهرة</div>
-        </div>
-
-
-
-
-
-
     <script>
-const searchBox = document.querySelector('.search-box');
-const bikeCards = document.querySelectorAll('.bike-card');
-const filterBtns = document.querySelectorAll('.filter-btn');
+        const searchBox = document.querySelector('.search-box');
+        const bikeCards = document.querySelectorAll('.bike-card');
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const hoverSound = document.getElementById("hoverSound");
+        const overlay = document.getElementById('sellerOverlay');
+        const popupClose = document.getElementById('popupClose');
 
-const hoverSound = document.getElementById("hoverSound");
+        let currentFilter = 'all';
+        let currentSearch = '';
 
-let currentFilter = 'all';
-let currentSearch = '';
+        // Popup
+        document.querySelectorAll('.available').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const seller = btn.getAttribute('data-seller');
+                const phone  = btn.getAttribute('data-phone');
+                const loc    = btn.getAttribute('data-location');
+                const bike   = btn.getAttribute('data-bike');
 
-function filterBikes() {
+                const initials = seller.split(' ').map(w => w[0]).join('').slice(0, 2);
+                document.getElementById('popupAvatar').textContent = initials;
+                document.getElementById('popupBikeName').textContent = bike;
+                document.getElementById('popupSellerName').textContent = seller;
 
-    bikeCards.forEach(card => {
+                const phoneLink = document.getElementById('popupPhone');
+                phoneLink.textContent = phone;
+                phoneLink.href = 'tel:' + phone;
 
-        const title = card.querySelector('.bike-title')
-            .textContent.toLowerCase();
+                document.getElementById('popupLocation').textContent = 'متوفر في ' + loc;
+                document.getElementById('popupWhatsapp').href = 'https://wa.me/2' + phone;
 
-        const cc = parseInt(card.getAttribute('data-cc'));
-        const type = card.getAttribute('data-type');
+                overlay.classList.add('open');
+            });
+        });
 
-        let matchesFilter = false;
+        popupClose.addEventListener('click', () => overlay.classList.remove('open'));
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) overlay.classList.remove('open');
+        });
 
-        if (currentFilter === 'all') {
-            matchesFilter = true;
-        }
+        function filterBikes() {
+            bikeCards.forEach(card => {
+                const title = card.querySelector('.bike-title').textContent.toLowerCase();
+                const cc    = parseInt(card.getAttribute('data-cc'));
+                const type  = card.getAttribute('data-type');
 
-        else if (currentFilter === '150-250' && cc >= 150 && cc <= 250) {
-            matchesFilter = true;
-        }
+                let matchesFilter = false;
+                if (currentFilter === 'all') matchesFilter = true;
+                else if (currentFilter === '150-250'  && cc >= 150 && cc <= 250)  matchesFilter = true;
+                else if (currentFilter === '250-400'  && cc >  250 && cc <= 400)  matchesFilter = true;
+                else if (currentFilter === '400-700'  && cc >  400 && cc <= 700)  matchesFilter = true;
+                else if (currentFilter === '700-1000' && cc >  700 && cc <= 1000) matchesFilter = true;
+                else if (currentFilter === '1000-2000'&& cc > 1000 && cc <= 2000) matchesFilter = true;
+                else if (currentFilter === type) matchesFilter = true;
 
-        else if (currentFilter === '250-400' && cc > 250 && cc <= 400) {
-            matchesFilter = true;
-        }
-
-        else if (currentFilter === '400-700' && cc > 400 && cc <= 700) {
-            matchesFilter = true;
-        }
-
-        else if (currentFilter === '700-1000' && cc > 700 && cc <= 1000) {
-            matchesFilter = true;
-        }
-
-                else if (currentFilter === '1000-2000' && cc > 1000 && cc <= 2000) {
-            matchesFilter = true;
-        }
-
-        else if (currentFilter === type) {
-            matchesFilter = true;
-        }
-
-        const matchesSearch = title.includes(currentSearch);
-
-        if (matchesSearch && matchesFilter) {
-            card.style.display = 'block';
-        } else {
-            card.style.display = 'none';
-        }
-    });
-}
-
-searchBox.addEventListener('input', (e) => {
-    currentSearch = e.target.value.toLowerCase();
-    filterBikes();
-});
-
-filterBtns.forEach(btn => {
-
-    btn.addEventListener('click', () => {
-
-        filterBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-
-        currentFilter = btn.getAttribute('data-filter');
-
-        filterBikes();
-    });
-
-});
-
-bikeCards.forEach(card => {
-
-    card.addEventListener('mouseenter', () => {
-
-        if (hoverSound) {
-            hoverSound.currentTime = 0;
-            hoverSound.play().catch(() => {
+                const matchesSearch = title.includes(currentSearch);
+                card.style.display = (matchesSearch && matchesFilter) ? 'block' : 'none';
             });
         }
 
-        card.style.transform = "scale(1.05)";
-    });
+        searchBox.addEventListener('input', (e) => {
+            currentSearch = e.target.value.toLowerCase();
+            filterBikes();
+        });
 
-    card.addEventListener('mouseleave', () => {
-        card.style.transform = "scale(1)";
-    });
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentFilter = btn.getAttribute('data-filter');
+                filterBikes();
+            });
+        });
 
-});
-</script>
+        bikeCards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                if (hoverSound) { hoverSound.currentTime = 0; hoverSound.play().catch(() => {}); }
+                card.style.transform = "scale(1.05)";
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = "scale(1)";
+            });
+        });
+    </script>
+</body>
+</html>
